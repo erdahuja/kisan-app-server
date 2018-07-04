@@ -8,21 +8,6 @@ const nexmo = new Nexmo({
   apiSecret: 'sCFteo5momAj9AgB'
 });
 
-const from = 'Nexmo';
-const to = '918010099223';
-const text = 'A text message sent using the Nexmo SMS API';
-
-nexmo.message.sendSms(from, to, text, (error, response) => {
-  if(error) {
-    throw error;
-  } else if(response.messages[0].status != '0') {
-    console.error(response);
-    throw 'Nexmo returned back a non-zero status';
-  } else {
-    console.log(response);
-  }
-});
-
 router.post('/', function(req, res, next) {
   const { from, to, text, name } = req.body;
     nexmo.message.sendSms(from, to, text, (error, response) => {
@@ -37,7 +22,7 @@ router.post('/', function(req, res, next) {
       });
        message.save(function (err, message) {
         if (err) return console.error(err);
-        console.log(message + " saved to bookstore collection.");
+        console.log(message + " saved to message collection.");
          res.send(response);
 
       });
