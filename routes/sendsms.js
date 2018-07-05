@@ -22,7 +22,7 @@ router.post('/', function(req, res, next) {
       });
        message.save(function (err, message) {
         if (err) return console.error(err);
-        console.log(message + " saved to message collection.");
+        response.status = 200
          res.send(response);
 
       });
